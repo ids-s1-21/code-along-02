@@ -6,6 +6,7 @@ Alex Homer
 ``` r
 library(tidyverse)
 library(scales)
+library(lubridate)
 ```
 
 ## Read data
@@ -114,5 +115,69 @@ results in a new .rds file, which we now import.
 song_data <- readRDS("data/songs.rds")
 ```
 
-The rest of this R markdown document will be filled in during the live
-code-along on Thursday 30th September.
+Let’s try a different song.
+
+``` r
+chart_data %>% filter(song == "Counting Stars") %>%
+  ggplot(aes(x = chart_date, y = week_position)) +
+  geom_line() +
+  scale_y_reverse()
+```
+
+![](billboard_files/figure-gfm/one-republic-1.png)<!-- -->
+
+## Songs
+
+``` r
+song_data %>% arrange(desc(danceability)) %>%
+  select(song, performer, danceability)
+```
+
+    ## # A tibble: 29,506 x 3
+    ##    song                             performer                       danceability
+    ##    <chr>                            <chr>                                  <dbl>
+    ##  1 Funky Cold Medina                Tone-Loc                               0.988
+    ##  2 Go Girl                          Pitbull Featuring Trina & Youn~        0.986
+    ##  3 Cash Me Outside (#CashMeOutside) DJ Suede The Remix God                 0.981
+    ##  4 Ice Ice Baby                     Glee Cast                              0.98 
+    ##  5 State of Shock                   The Jacksons                           0.98 
+    ##  6 Ice Ice Baby                     Vanilla Ice                            0.978
+    ##  7 Uno                              Ambjaay                                0.978
+    ##  8 Bad Bad Bad                      Young Thug Featuring Lil Baby          0.974
+    ##  9 Bad Bad Bad                      Young Thug Featuring Lil Baby          0.974
+    ## 10 Betcha She Don't Love You        Evelyn King                            0.974
+    ## # ... with 29,496 more rows
+
+``` r
+song_data <- song_data %>%
+  mutate(song_year = year(first_appearance))
+
+song_data %>%
+  group_by(song_year) %>%
+  summarise(average_dance = mean(danceability, na.rm = TRUE)) %>%
+  ggplot(aes(x = song_year, y = average_dance)) +
+  geom_line()
+```
+
+![](billboard_files/figure-gfm/average-danceability-year-1.png)<!-- -->
+
+``` r
+song_data %>% filter(song_year == 2010) %>%
+  arrange(danceability) %>%
+  select(song, performer, danceability)
+```
+
+    ## # A tibble: 474 x 3
+    ##    song                                             performer       danceability
+    ##    <chr>                                            <chr>                  <dbl>
+    ##  1 New Morning                                      Alpha Rev              0.191
+    ##  2 Black Rain                                       Soundgarden            0.2  
+    ##  3 Don't Cry For Me Argentina (Lea Michele Version) Glee Cast              0.21 
+    ##  4 I Dreamed A Dream                                Glee Cast Feat~        0.236
+    ##  5 Beautiful                                        Glee Cast              0.253
+    ##  6 Hallelujah (Vancouver Winter 2010 Version)       k.d. lang              0.256
+    ##  7 A House Is Not A Home                            Glee Cast              0.266
+    ##  8 One Less Bell To Answer / A House Is Not A Home  Glee Cast Feat~        0.266
+    ##  9 One Of Us                                        Glee Cast              0.278
+    ## 10 What I Did For Love                              Glee Cast              0.281
+    ## # ... with 464 more rows
