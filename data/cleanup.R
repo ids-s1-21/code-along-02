@@ -41,7 +41,7 @@ songs <- chart_data_clean %>%
   )
 
 songs_full <- songs %>%
-  left_join(features, by = "song_id")
+  left_join(features, by = c("song_id", "song", "performer"))
 
 saveRDS(chart_data_clean, file = "data/billboard.rds")
 saveRDS(songs_full, file = "data/songs.rds")

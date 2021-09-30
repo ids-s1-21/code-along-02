@@ -10,6 +10,7 @@ editor_options:
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(scales)
+library(lubridate)
 ```
 
 ## Read data
@@ -65,4 +66,34 @@ But this is probably a bit "too much data" for our purposes in this code-along, 
 song_data <- readRDS("data/songs.rds")
 ```
 
-The rest of this R markdown document will be filled in during the live code-along on Thursday 30th September.
+Let's try a different song.
+
+```{r one-republic}
+chart_data %>% filter(song == "Counting Stars") %>%
+  ggplot(aes(x = chart_date, y = week_position)) +
+  geom_line() +
+  scale_y_reverse()
+```
+
+## Songs
+```{r least-danceable-song}
+song_data %>% arrange(desc(danceability)) %>%
+  select(song, performer, danceability)
+```
+
+```{r average-danceability-year}
+song_data <- song_data %>%
+  mutate(song_year = year(first_appearance))
+
+song_data %>%
+  group_by(song_year) %>%
+  summarise(average_dance = mean(danceability, na.rm = TRUE)) %>%
+  ggplot(aes(x = song_year, y = average_dance)) +
+  geom_line()
+```
+
+```{r 2010}
+song_data %>% filter(song_year == 2010) %>%
+  arrange(danceability) %>%
+  select(song, performer, danceability)
+```
