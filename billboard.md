@@ -241,7 +241,7 @@ song_data %>%
 
 ![](billboard_files/figure-gfm/average-danceability-year-1.png)<!-- -->
 
-There seems to be a dip in danceability cntered on around 2010. If we
+There seems to be a dip in danceability centered on around 2010. If we
 look at the least danceable songs, it’s easy to blame this on one
 particular TV show…
 

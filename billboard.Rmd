@@ -134,7 +134,7 @@ song_data %>%
   )
 ```
 
-There seems to be a dip in danceability cntered on around 2010.  If we look at the least danceable songs, it's easy to blame this on one particular TV show...
+There seems to be a dip in danceability centered on around 2010.  If we look at the least danceable songs, it's easy to blame this on one particular TV show...
 
 ```{r 2010-least}
 song_data %>% filter(song_year == 2010) %>%
