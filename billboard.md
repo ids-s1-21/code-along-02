@@ -234,7 +234,8 @@ song_data %>%
   labs(
     x = "Year",
     y = "Average danceability of songs",
-    title = "Danceability seems to be weakly increasing"
+    title = "Danceability seems to be weakly increasing",
+    caption = "Source: Data.World via Sean Miller, Billboard.com and Spotify"
   )
 ```
 
@@ -298,7 +299,8 @@ song_data %>%
   geom_point(alpha = 0.15) + #So we can see all the points
   labs(
     x = "First appearance in charts",
-    y = "Danceability"
+    y = "Danceability",
+    caption = "Source: Data.World via Sean Miller, Billboard.com and Spotify",
   ) +
   geom_smooth() + #Trend line
   theme_minimal()
