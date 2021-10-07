@@ -22,7 +22,7 @@ Billboard](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/
 [Data.World](https://data.world/kcmillersean/billboard-hot-100-1958-2017#),
 via Sean Miller, [Billboard.com](https://www.billboard.com/) and
 Spotify). We have very lightly modified the data by converting the
-`week_id` column to a week that R can recognise.
+`week_id` column to a week that R can recognize.
 
 ``` r
 chart_data <- readRDS("data/billboard.rds")
@@ -33,7 +33,7 @@ chart_data %>%
   )
 ```
 
-    ## # A tibble: 1 x 2
+    ## # A tibble: 1 × 2
     ##   first_week last_week 
     ##   <date>     <date>    
     ## 1 1958-08-02 2021-05-29
@@ -57,7 +57,7 @@ never_gonna <- chart_data %>%
 never_gonna %>% print(n = dim(never_gonna)[1]) #Print all rows
 ```
 
-    ## # A tibble: 24 x 4
+    ## # A tibble: 24 × 4
     ##    song                    performer   chart_date week_position
     ##    <chr>                   <chr>       <date>             <dbl>
     ##  1 Never Gonna Give You Up Rick Astley 1987-12-19            71
@@ -144,11 +144,11 @@ song_data %>% arrange(desc(danceability)) %>%
   select(song, performer, danceability)
 ```
 
-    ## # A tibble: 29,506 x 3
+    ## # A tibble: 29,506 × 3
     ##    song                             performer                       danceability
     ##    <chr>                            <chr>                                  <dbl>
     ##  1 Funky Cold Medina                Tone-Loc                               0.988
-    ##  2 Go Girl                          Pitbull Featuring Trina & Youn~        0.986
+    ##  2 Go Girl                          Pitbull Featuring Trina & Youn…        0.986
     ##  3 Cash Me Outside (#CashMeOutside) DJ Suede The Remix God                 0.981
     ##  4 Ice Ice Baby                     Glee Cast                              0.98 
     ##  5 State of Shock                   The Jacksons                           0.98 
@@ -157,7 +157,7 @@ song_data %>% arrange(desc(danceability)) %>%
     ##  8 Bad Bad Bad                      Young Thug Featuring Lil Baby          0.974
     ##  9 Bad Bad Bad                      Young Thug Featuring Lil Baby          0.974
     ## 10 Betcha She Don't Love You        Evelyn King                            0.974
-    ## # ... with 29,496 more rows
+    ## # … with 29,496 more rows
 
 … as well as the least.
 
@@ -166,7 +166,7 @@ song_data %>% arrange(danceability) %>%
   select(song, performer, danceability)
 ```
 
-    ## # A tibble: 29,506 x 3
+    ## # A tibble: 29,506 × 3
     ##    song                               performer           danceability
     ##    <chr>                              <chr>                      <dbl>
     ##  1 A Letter To An Angel               Jimmy Clanton              0    
@@ -179,7 +179,7 @@ song_data %>% arrange(danceability) %>%
     ##  8 Through The Fire And Flames        DragonForce                0.113
     ##  9 Walk Away                          Matt Monro                 0.12 
     ## 10 On A Clear Day You Can See Forever Johnny Mathis              0.123
-    ## # ... with 29,496 more rows
+    ## # … with 29,496 more rows
 
 I suspect that there’s been some sort of data problem with the least
 danceable song, given that it has a score of exactly 0 (and if you
@@ -192,7 +192,7 @@ song_data %>% filter(song == "A Letter To An Angel") %>%
   select(energy, acousticness, speechiness, liveness)
 ```
 
-    ## # A tibble: 1 x 4
+    ## # A tibble: 1 × 4
     ##   energy acousticness speechiness liveness
     ##    <dbl>        <dbl>       <dbl>    <dbl>
     ## 1  0.287        0.876           0    0.112
@@ -210,7 +210,7 @@ song_data %>%
   summarise(dance_val_prop = sum(is.na(danceability))/n())
 ```
 
-    ## # A tibble: 1 x 1
+    ## # A tibble: 1 × 1
     ##   dance_val_prop
     ##            <dbl>
     ## 1          0.175
@@ -251,20 +251,20 @@ song_data %>% filter(song_year == 2010) %>%
   select(song, performer, danceability)
 ```
 
-    ## # A tibble: 474 x 3
+    ## # A tibble: 474 × 3
     ##    song                                             performer       danceability
     ##    <chr>                                            <chr>                  <dbl>
     ##  1 New Morning                                      Alpha Rev              0.191
     ##  2 Black Rain                                       Soundgarden            0.2  
     ##  3 Don't Cry For Me Argentina (Lea Michele Version) Glee Cast              0.21 
-    ##  4 I Dreamed A Dream                                Glee Cast Feat~        0.236
+    ##  4 I Dreamed A Dream                                Glee Cast Feat…        0.236
     ##  5 Beautiful                                        Glee Cast              0.253
     ##  6 Hallelujah (Vancouver Winter 2010 Version)       k.d. lang              0.256
     ##  7 A House Is Not A Home                            Glee Cast              0.266
-    ##  8 One Less Bell To Answer / A House Is Not A Home  Glee Cast Feat~        0.266
+    ##  8 One Less Bell To Answer / A House Is Not A Home  Glee Cast Feat…        0.266
     ##  9 One Of Us                                        Glee Cast              0.278
     ## 10 What I Did For Love                              Glee Cast              0.281
-    ## # ... with 464 more rows
+    ## # … with 464 more rows
 
 … but the *Glee* cast appear heavily in the most danceable songs too,
 including the most danceable, so that’s probably unfair.
@@ -275,7 +275,7 @@ song_data %>% filter(song_year == 2010) %>%
   select(song, performer, danceability)
 ```
 
-    ## # A tibble: 474 x 3
+    ## # A tibble: 474 × 3
     ##    song                       performer               danceability
     ##    <chr>                      <chr>                          <dbl>
     ##  1 Ice Ice Baby               Glee Cast                      0.98 
@@ -288,7 +288,7 @@ song_data %>% filter(song_year == 2010) %>%
     ##  8 Outta Your Mind            Lil Jon Featuring LMFAO        0.876
     ##  9 Not Afraid                 Eminem                         0.855
     ## 10 Check It Out               will.i.am & Nicki Minaj        0.854
-    ## # ... with 464 more rows
+    ## # … with 464 more rows
 
 Instead of doing the average, let’s do a scatter plot of all songs’
 danceability against their first appearance in the chart.
@@ -339,7 +339,7 @@ We can then count the number of songs that charted in each decade.
 count(song_data, decade)
 ```
 
-    ## # A tibble: 8 x 2
+    ## # A tibble: 8 × 2
     ##   decade     n
     ##   <fct>  <int>
     ## 1 1950s    926

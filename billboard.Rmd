@@ -18,7 +18,7 @@ library(emo)
 ```
 
 ## Read data
-The data are drawn from the "Tidy Tuesday" project: [2021 Week 38: Top 100 Billboard](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-09-14/readme.md) (credit: [Data.World](https://data.world/kcmillersean/billboard-hot-100-1958-2017#), via Sean Miller, [Billboard.com](https://www.billboard.com/) and Spotify).  We have very lightly modified the data by converting the `week_id` column to a week that R can recognise.
+The data are drawn from the "Tidy Tuesday" project: [2021 Week 38: Top 100 Billboard](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-09-14/readme.md) (credit: [Data.World](https://data.world/kcmillersean/billboard-hot-100-1958-2017#), via Sean Miller, [Billboard.com](https://www.billboard.com/) and Spotify).  We have very lightly modified the data by converting the `week_id` column to a week that R can recognize.
 
 ```{r read-data, message = FALSE}
 chart_data <- readRDS("data/billboard.rds")
